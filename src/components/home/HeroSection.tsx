@@ -172,14 +172,14 @@ export function HeroSection() {
             transition={{ duration: 0.5, delay: 0.68 }}
             className="flex flex-wrap justify-center gap-2"
           >
-            {siteConfig.doctor.certifications.map((cert) => (
-              <span
-                key={cert}
-                className="rounded-full border border-primary/30 bg-primary/10 px-4 py-1.5 text-xs font-medium text-primary"
-              >
-                ✓ {cert}
-              </span>
-            ))}
+{siteConfig.doctor.certifications.map((cert) => (
+               <span
+                 key={cert}
+                 className="rounded-full border border-primary/30 bg-primary/10 px-4 py-1.5 text-xs font-medium text-primary"
+               >
+                 {cert}
+               </span>
+             ))}
           </motion.div>
 
 

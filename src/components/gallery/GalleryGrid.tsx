@@ -10,7 +10,6 @@ import type { GalleryImage } from '@/types';
 const categories = [
   { key: 'all', label: 'All' },
   { key: 'clinic', label: 'Our Clinic' },
-  { key: 'treatment', label: 'Treatments' },
   { key: 'team', label: 'Our Team' },
 ] as const;
 
@@ -37,7 +36,6 @@ function Lightbox({
       className="fixed inset-0 z-[100] flex items-center justify-center bg-black/90 backdrop-blur-sm"
       onClick={onClose}
     >
-      {/* Close */}
       <button
         onClick={onClose}
         className="absolute right-4 top-4 flex h-10 w-10 items-center justify-center rounded-full bg-white/10 text-white transition-colors hover:bg-white/20"
@@ -45,7 +43,6 @@ function Lightbox({
         <X size={18} />
       </button>
 
-      {/* Prev */}
       <button
         onClick={(e) => { e.stopPropagation(); onPrev(); }}
         className="absolute left-4 flex h-12 w-12 items-center justify-center rounded-full bg-white/10 text-white transition-colors hover:bg-white/20"
@@ -53,7 +50,6 @@ function Lightbox({
         <ChevronLeft size={22} />
       </button>
 
-      {/* Image */}
       <motion.div
         key={index}
         initial={{ opacity: 0, scale: 0.92 }}
@@ -71,9 +67,8 @@ function Lightbox({
             className="object-contain"
             onError={(e) => { (e.target as HTMLImageElement).style.display = 'none'; }}
           />
-          {/* Fallback */}
           <div className="flex h-full w-full items-center justify-center">
-            <p className="text-white/40 text-sm">{images[index].alt}</p>
+            <p className="text-xs text-muted-foreground px-4 text-center">{images[index].alt}</p>
           </div>
         </div>
         <div className="absolute bottom-0 inset-x-0 bg-gradient-to-t from-black/60 to-transparent p-4">
@@ -82,7 +77,6 @@ function Lightbox({
         </div>
       </motion.div>
 
-      {/* Next */}
       <button
         onClick={(e) => { e.stopPropagation(); onNext(); }}
         className="absolute right-4 flex h-12 w-12 items-center justify-center rounded-full bg-white/10 text-white transition-colors hover:bg-white/20"
@@ -111,8 +105,6 @@ export function GalleryGrid() {
   return (
     <section className="section-padding bg-background">
       <div className="container-tight">
-
-        {/* Filter tabs */}
         <div className="mb-10 flex flex-wrap justify-center gap-2">
           {categories.map((cat) => (
             <button
@@ -129,57 +121,55 @@ export function GalleryGrid() {
           ))}
         </div>
 
-        {/* Masonry grid */}
-        <motion.div layout className="columns-1 gap-4 sm:columns-2 lg:columns-3">
+        <motion.div layout className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
           <AnimatePresence mode="popLayout">
             {filtered.map((img, i) => (
               <motion.div
                 key={img.src}
                 layout
-                initial={{ opacity: 0, scale: 0.9 }}
-                animate={{ opacity: 1, scale: 1 }}
-                exit={{ opacity: 0, scale: 0.9 }}
-                transition={{ duration: 0.35, delay: i * 0.04 }}
-                className="group relative mb-4 cursor-pointer overflow-hidden rounded-2xl border border-border bg-muted break-inside-avoid"
+                initial={{ opacity: 0, y: 40, scale: 0.95 }}
+                animate={{ opacity: 1, y: 0, scale: 1 }}
+                exit={{ opacity: 0, y: 20 }}
+                transition={{ duration: 0.4, delay: i * 0.03 }}
+                whileHover={{ y: -5, transition: { duration: 0.2 } }}
+                className="group relative cursor-pointer overflow-hidden rounded-2xl border border-border bg-card shadow-lg"
                 onClick={() => openLightbox(i)}
               >
-                <div className={`relative w-full ${i % 3 === 0 ? 'aspect-square' : i % 3 === 1 ? 'aspect-[4/3]' : 'aspect-[3/4]'} bg-gradient-to-br from-primary/10 to-primary/5`}>
+                <div className="relative aspect-square">
                   <Image
                     src={img.src}
                     alt={img.alt}
                     fill
-                    className="object-cover transition-transform duration-500 group-hover:scale-105"
-                    onError={(e) => { (e.target as HTMLImageElement).style.display = 'none'; }}
+                    className="object-cover transition-transform duration-[600ms] group-hover:scale-110"
+                    onError={(e) => {
+                      (e.target as HTMLImageElement).style.display = 'none';
+                    }}
                   />
-                  {/* Fallback */}
-                  <div className="flex h-full w-full items-center justify-center">
-                    <p className="text-xs text-muted-foreground px-4 text-center">{img.alt}</p>
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+                  <div className="absolute inset-0 flex items-center justify-center opacity-0 transition-all duration-300 group-hover:opacity-100">
+                    <div className="flex h-12 w-12 items-center justify-center rounded-full bg-white/20 backdrop-blur-sm">
+                      <ZoomIn size={24} className="text-white" />
+                    </div>
                   </div>
                 </div>
-
-                {/* Hover overlay */}
-                <div className="absolute inset-0 flex flex-col items-center justify-center gap-2 bg-foreground/60 opacity-0 backdrop-blur-sm transition-opacity duration-300 group-hover:opacity-100">
-                  <ZoomIn size={28} className="text-white" />
-                  <p className="text-xs font-medium text-white/90">{img.alt}</p>
-                </div>
+                <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-primary to-brand-light opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
               </motion.div>
             ))}
           </AnimatePresence>
         </motion.div>
-      </div>
 
-      {/* Lightbox */}
-      <AnimatePresence>
-        {lightboxIndex !== null && (
-          <Lightbox
-            images={filtered}
-            index={lightboxIndex}
-            onClose={closeLightbox}
-            onPrev={prevImage}
-            onNext={nextImage}
-          />
-        )}
-      </AnimatePresence>
+        <AnimatePresence>
+          {lightboxIndex !== null && (
+            <Lightbox
+              images={filtered}
+              index={lightboxIndex}
+              onClose={closeLightbox}
+              onPrev={prevImage}
+              onNext={nextImage}
+            />
+          )}
+        </AnimatePresence>
+      </div>
     </section>
   );
 }

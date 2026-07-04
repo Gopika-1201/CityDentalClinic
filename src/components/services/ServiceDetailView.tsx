@@ -8,17 +8,6 @@ import { serviceDetails } from '@/data/services';
 import type { ServiceDetail } from '@/types';
 import { siteConfig } from '@/config/site';
 
-const serviceIcons: Record<string, string> = {
-  implant: '🦷',
-  aligners: '😁',
-  whitening: '✨',
-  rootcanal: '🔬',
-  crown: '👑',
-  braces: '🔧',
-  cleaning: '🪥',
-  pediatric: '👶',
-};
-
 export function ServiceDetailView({ service }: { service: ServiceDetail }) {
   const others = serviceDetails.filter((s) => s.slug !== service.slug).slice(0, 3);
 
@@ -54,7 +43,6 @@ export function ServiceDetailView({ service }: { service: ServiceDetail }) {
             transition={{ duration: 0.6 }}
             className="flex flex-col items-center gap-4 text-center text-white"
           >
-            <span className="text-5xl">{serviceIcons[service.icon]}</span>
             <span className="rounded-full border border-white/20 bg-white/10 px-4 py-1 text-xs font-semibold uppercase tracking-widest">
               Our Services
             </span>
@@ -71,10 +59,8 @@ export function ServiceDetailView({ service }: { service: ServiceDetail }) {
       <section className="section-padding">
         <div className="container-tight">
           <div className="grid gap-12 lg:grid-cols-3">
-
             {/* Left — Main */}
             <div className="lg:col-span-2 flex flex-col gap-10">
-
               {/* Image */}
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
@@ -86,14 +72,11 @@ export function ServiceDetailView({ service }: { service: ServiceDetail }) {
                   src={service.image}
                   alt={service.title}
                   fill
-                  className="object-cover"
+                  className={`object-cover ${service.slug === 'pediatric-dentistry' ? 'object-bottom' : 'object-center'}`}
                   onError={(e) => {
                     (e.target as HTMLImageElement).style.display = 'none';
                   }}
                 />
-                <div className="absolute inset-0 flex items-center justify-center">
-                  <span className="text-8xl opacity-20">{serviceIcons[service.icon]}</span>
-                </div>
               </motion.div>
 
               {/* Description */}
@@ -141,7 +124,6 @@ export function ServiceDetailView({ service }: { service: ServiceDetail }) {
 
             {/* Right — Sidebar */}
             <div className="flex flex-col gap-5">
-
               {/* Quick info */}
               <motion.div
                 initial={{ opacity: 0, x: 20 }}
@@ -166,7 +148,7 @@ export function ServiceDetailView({ service }: { service: ServiceDetail }) {
                   </div>
                   <div className="flex items-start gap-3">
                     <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-primary/10">
-                      <span className="text-base">{serviceIcons[service.icon]}</span>
+                      <Clock size={15} className="text-primary" />
                     </div>
                     <div>
                       <p className="text-xs font-semibold uppercase tracking-wide text-muted-foreground">
@@ -210,7 +192,6 @@ export function ServiceDetailView({ service }: { service: ServiceDetail }) {
                       className="group flex items-center justify-between rounded-xl border border-border p-3 text-sm transition-all hover:border-primary/30 hover:bg-accent"
                     >
                       <div className="flex items-center gap-2">
-                        <span className="text-base">{serviceIcons[s.icon]}</span>
                         <span className="font-medium text-foreground">{s.title}</span>
                       </div>
                       <ChevronRight

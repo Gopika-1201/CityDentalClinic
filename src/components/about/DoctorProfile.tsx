@@ -98,7 +98,7 @@ export function DoctorProfile() {
                   i === 0 ? 'card-float-1 -right-4 top-8' : 'card-float-2 -left-4 bottom-16'
                 }`}
               >
-                <p className="text-xs font-semibold text-primary">✓ {cert}</p>
+                <p className="text-xs font-semibold text-primary">{cert}</p>
               </div>
             ))}
           </motion.div>

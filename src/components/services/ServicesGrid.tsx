@@ -7,17 +7,6 @@ import { motion } from 'framer-motion';
 import { ArrowUpRight, Clock, CheckCircle2 } from 'lucide-react';
 import { serviceDetails } from '@/data/services';
 
-const serviceIcons: Record<string, string> = {
-  implant: '🦷',
-  aligners: '😁',
-  whitening: '✨',
-  rootcanal: '🔬',
-  crown: '👑',
-  braces: '🔧',
-  cleaning: '🪥',
-  pediatric: '👶',
-};
-
 function ServiceCard({
   service,
   index,
@@ -71,15 +60,11 @@ function ServiceCard({
               src={service.image}
               alt={service.title}
               fill
-              className="object-cover transition-transform duration-500 group-hover:scale-105"
+              className={`object-cover transition-transform duration-500 group-hover:scale-105 ${service.slug === 'pediatric-dentistry' ? 'object-bottom' : 'object-center'}`}
               onError={(e) => {
                 (e.target as HTMLImageElement).style.display = 'none';
               }}
             />
-            {/* Icon fallback overlay */}
-            <div className="absolute inset-0 flex items-center justify-center">
-              <span className="text-5xl opacity-30">{serviceIcons[service.icon]}</span>
-            </div>
             {/* Gradient overlay */}
             <div className="absolute inset-0 bg-gradient-to-t from-card via-transparent to-transparent" />
           </div>

@@ -42,7 +42,7 @@ export interface Testimonial {
 export interface GalleryImage {
   src: string;
   alt: string;
-  category: 'clinic' | 'treatment' | 'team';
+  category: 'clinic' | 'team';
 }
 
 // ─── Before & After ──────────────────────────────────────────────────────────
