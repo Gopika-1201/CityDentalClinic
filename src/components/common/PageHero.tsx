@@ -23,16 +23,16 @@ export function PageHero({ label, title, highlight, subtitle, className }: PageH
     <section
       ref={ref}
       className={cn(
-        'relative flex min-h-[42vh] items-center overflow-hidden bg-foreground dark:bg-card',
+        'relative flex min-h-[42vh] items-center overflow-hidden bg-white',
         className
       )}
     >
       {/* Grid overlay */}
       <div
-        className="pointer-events-none absolute inset-0 opacity-5"
+        className="pointer-events-none absolute inset-0 opacity-[0.04]"
         style={{
           backgroundImage:
-            'linear-gradient(rgba(255,255,255,0.15) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.15) 1px, transparent 1px)',
+            'linear-gradient(rgba(0,0,0,0.3) 1px, transparent 1px), linear-gradient(90deg, rgba(0,0,0,0.3) 1px, transparent 1px)',
           backgroundSize: '50px 50px',
         }}
       />
@@ -40,10 +40,10 @@ export function PageHero({ label, title, highlight, subtitle, className }: PageH
       {/* Glow */}
       <motion.div
         style={{ y }}
-        className="pointer-events-none absolute left-1/2 top-1/2 h-[500px] w-[700px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-primary/25 blur-[120px]"
+        className="pointer-events-none absolute left-1/2 top-1/2 h-[500px] w-[700px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-primary/12 blur-[120px]"
       />
 
-      <div className="container-tight relative z-10 py-20 text-center text-white">
+      <div className="container-tight relative z-10 py-20 text-center">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
@@ -51,11 +51,11 @@ export function PageHero({ label, title, highlight, subtitle, className }: PageH
           className="flex flex-col items-center gap-4"
         >
           {label && (
-            <span className="rounded-full border border-white/20 bg-white/10 px-4 py-1 text-xs font-semibold uppercase tracking-widest backdrop-blur-sm">
+            <span className="rounded-full border border-primary/25 bg-primary/10 px-4 py-1 text-xs font-semibold uppercase tracking-widest text-primary">
               {label}
             </span>
           )}
-          <h1 className="font-heading text-4xl font-bold leading-tight sm:text-5xl lg:text-6xl">
+          <h1 className="font-heading text-4xl font-bold leading-tight text-foreground sm:text-5xl lg:text-6xl">
             {highlight ? (
               <>
                 {titleParts[0]}
@@ -67,7 +67,7 @@ export function PageHero({ label, title, highlight, subtitle, className }: PageH
             )}
           </h1>
           {subtitle && (
-            <p className="max-w-2xl text-base leading-relaxed text-white/70 sm:text-lg">
+            <p className="max-w-2xl text-base leading-relaxed text-foreground/55 sm:text-lg">
               {subtitle}
             </p>
           )}

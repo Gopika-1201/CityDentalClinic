@@ -10,7 +10,7 @@ export const siteConfig = {
     qualification: 'BDS',
     experience: 19,
     certifications: ['Certified Invisalign Provider', 'Certified Implant Provider'],
-    image: '/images/doctor/dr-chandrasekar.jpg',
+    image: '/images/doctor/doctor-img.avif',
   },
 
   contact: {
@@ -30,6 +30,7 @@ export const siteConfig = {
 
   social: {
     instagram: 'https://www.instagram.com/citydentalclinics/',
+    facebook: 'https://www.facebook.com/CITYDENTALTIRUPUR/',
     whatsapp: 'https://wa.me/919566888886',
     googleMaps: 'https://maps.app.goo.gl/E3rXSmvbEEHJ65n8A',
     googleMapsEmbed:
@@ -56,7 +57,7 @@ export const siteConfig = {
       title: 'Dental Implants',
       shortDesc: 'Permanent tooth replacement that looks and feels natural.',
       icon: 'implant',
-      image: '/images/services/dental-implants.jpg',
+      image: '/images/services/dental-implants.jpeg',
     },
     {
       slug: 'invisalign',
@@ -70,14 +71,14 @@ export const siteConfig = {
       title: 'Teeth Whitening',
       shortDesc: 'Professional whitening for a brighter, confident smile.',
       icon: 'whitening',
-      image: '/images/services/teeth-whitening.jpg',
+      image: '/images/services/teeth-whitening.webp',
     },
     {
       slug: 'root-canal',
       title: 'Root Canal Treatment',
       shortDesc: 'Pain-free root canal therapy to save your natural tooth.',
       icon: 'rootcanal',
-      image: '/images/services/root-canal.jpg',
+      image: '/images/services/root-canal.webp',
     },
     {
       slug: 'dental-crowns',
@@ -105,7 +106,7 @@ export const siteConfig = {
       title: 'Pediatric Dentistry',
       shortDesc: 'Gentle, child-friendly dental care for your little ones.',
       icon: 'pediatric',
-      image: '/images/services/pediatric-dentistry.jpg',
+      image: '/images/services/pediatric-dentistry.avif',
     },
   ],
 

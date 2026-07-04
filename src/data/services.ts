@@ -6,7 +6,7 @@ export const serviceDetails: ServiceDetail[] = [
     title: 'Dental Implants',
     shortDesc: 'Permanent tooth replacement that looks and feels natural.',
     icon: 'implant',
-    image: '/images/services/dental-implants.jpg',
+    image: '/images/services/dental-implants.jpeg',
     fullDesc:
       'Dental implants are the gold standard for replacing missing teeth. A titanium post is surgically placed into the jawbone, acting as an artificial root. Once healed, a custom-crafted crown is attached — giving you a tooth that looks, feels, and functions exactly like a natural one. Dr. Chandrasekar is a certified implant provider with hundreds of successful implant placements.',
     benefits: [
@@ -42,7 +42,7 @@ export const serviceDetails: ServiceDetail[] = [
     title: 'Teeth Whitening',
     shortDesc: 'Professional whitening for a brighter, confident smile.',
     icon: 'whitening',
-    image: '/images/services/teeth-whitening.jpg',
+    image: '/images/services/teeth-whitening.webp',
     fullDesc:
       'Our professional teeth whitening treatment delivers results up to 8 shades brighter in a single session. Unlike over-the-counter products, our clinical-grade whitening gel is applied under controlled conditions, ensuring even, long-lasting results without sensitivity. We also offer take-home whitening kits for gradual brightening at your convenience.',
     benefits: [
@@ -60,7 +60,7 @@ export const serviceDetails: ServiceDetail[] = [
     title: 'Root Canal Treatment',
     shortDesc: 'Pain-free root canal therapy to save your natural tooth.',
     icon: 'rootcanal',
-    image: '/images/services/root-canal.jpg',
+    image: '/images/services/root-canal.webp',
     fullDesc:
       'Modern root canal treatment is nothing to fear. Using advanced rotary instruments and precise anaesthesia, Dr. Chandrasekar removes infected pulp tissue, cleans and shapes the root canals, and seals them to prevent reinfection. The procedure saves your natural tooth and eliminates pain — most patients report the treatment is no more uncomfortable than a routine filling.',
     benefits: [
@@ -132,7 +132,7 @@ export const serviceDetails: ServiceDetail[] = [
     title: 'Pediatric Dentistry',
     shortDesc: 'Gentle, child-friendly dental care for your little ones.',
     icon: 'pediatric',
-    image: '/images/services/pediatric-dentistry.jpg',
+    image: '/images/services/pediatric-dentistry.avif',
     fullDesc:
       'Our child-friendly dental care is designed to make every visit a positive experience. From the first tooth to teenage years, we provide preventive care, fillings, fluoride treatments, and orthodontic assessments in a warm, welcoming environment. We take extra time to explain procedures to children and parents, building trust and healthy dental habits for life.',
     benefits: [

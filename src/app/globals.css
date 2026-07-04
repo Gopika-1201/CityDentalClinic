@@ -177,6 +177,14 @@
 }
 
 /* ─── CSS Animations ─────────────────────────────────────────────────────── */
+@keyframes light-beam {
+  0%, 100% { opacity: 0.15; transform: rotate(25deg) scaleY(1); }
+  50%       { opacity: 0.35; transform: rotate(28deg) scaleY(1.05); }
+}
+@keyframes light-beam-2 {
+  0%, 100% { opacity: 0.06; transform: rotate(15deg) scaleY(1); }
+  50%       { opacity: 0.14; transform: rotate(12deg) scaleY(1.03); }
+}
 @keyframes spin-slow {
   from { transform: rotate(0deg); }
   to   { transform: rotate(360deg); }
@@ -210,6 +218,14 @@
   to   { transform: translateX(0); }
 }
 
+.light-beam {
+  animation: light-beam 6s ease-in-out infinite;
+  will-change: opacity, transform;
+}
+.light-beam-2 {
+  animation: light-beam-2 8s ease-in-out infinite;
+  will-change: opacity, transform;
+}
 .ring-spin-slow {
   animation: spin-slow 30s linear infinite;
   will-change: transform;
@@ -273,7 +289,9 @@
   .card-float-3,
   .scroll-bounce,
   .marquee-track,
-  .marquee-track-reverse {
+  .marquee-track-reverse,
+  .light-beam,
+  .light-beam-2 {
     animation: none;
   }
 }

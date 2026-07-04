@@ -1,8 +1,9 @@
 'use client';
 
+import { useState, useEffect } from 'react';
 import Image from 'next/image';
-import { motion } from 'framer-motion';
-import { Award, GraduationCap, Heart, Shield } from 'lucide-react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { Award, GraduationCap, Heart, Shield, X, ChevronLeft, ChevronRight, ZoomIn } from 'lucide-react';
 import { SectionHeading } from '@/components/common';
 import { siteConfig } from '@/config/site';
 
@@ -29,7 +30,30 @@ const philosophy = [
   },
 ];
 
+const awards = [
+  { src: '/images/doctor/award1.avif', alt: 'Award 1' },
+  { src: '/images/doctor/award2.jpg',  alt: 'Award 2' },
+  { src: '/images/doctor/award3.jpg',  alt: 'Award 3' },
+  { src: '/images/doctor/award4.jpg',  alt: 'Award 4' },
+  { src: '/images/doctor/award5.jpg',  alt: 'Award 5' },
+  { src: '/images/doctor/award6.webp', alt: 'Award 6' },
+  { src: '/images/doctor/award7.avif', alt: 'Award 7' },
+  { src: '/images/doctor/award8.avif', alt: 'Award 8' },
+];
+
 export function DoctorProfile() {
+  const [lightbox, setLightbox] = useState<number | null>(null);
+
+  useEffect(() => {
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') setLightbox(null);
+      if (e.key === 'ArrowRight') setLightbox((p) => p !== null && p !== -1 ? (p + 1) % awards.length : p);
+      if (e.key === 'ArrowLeft')  setLightbox((p) => p !== null && p !== -1 ? (p - 1 + awards.length) % awards.length : p);
+    };
+    window.addEventListener('keydown', onKey);
+    return () => window.removeEventListener('keydown', onKey);
+  }, []);
+
   return (
     <section className="section-padding overflow-hidden bg-muted/30">
       <div className="container-tight">
@@ -51,30 +75,16 @@ export function DoctorProfile() {
             className="relative"
           >
             {/* Main image */}
-            <div className="relative overflow-hidden rounded-3xl border border-border bg-gradient-to-br from-primary/10 to-primary/5 shadow-2xl aspect-[4/5]">
+            <div
+              className="group relative overflow-hidden rounded-3xl border border-border shadow-2xl aspect-[4/5] cursor-zoom-in"
+              onClick={() => setLightbox(-1)}
+            >
               <Image
                 src={siteConfig.doctor.image}
                 alt={siteConfig.doctor.name}
                 fill
                 className="object-cover object-top"
-                onError={(e) => {
-                  (e.target as HTMLImageElement).style.display = 'none';
-                }}
               />
-              {/* Fallback */}
-              <div className="flex h-full w-full items-center justify-center">
-                <div className="flex flex-col items-center gap-4 text-center">
-                  <div className="flex h-28 w-28 items-center justify-center rounded-full bg-primary/20">
-                    <Award className="h-14 w-14 text-primary" />
-                  </div>
-                  <div>
-                    <p className="font-heading text-xl font-bold text-foreground">
-                      {siteConfig.doctor.name}
-                    </p>
-                    <p className="text-sm text-muted-foreground">{siteConfig.doctor.qualification}</p>
-                  </div>
-                </div>
-              </div>
 
               {/* Gradient overlay at bottom */}
               <div className="absolute bottom-0 inset-x-0 h-32 bg-gradient-to-t from-background/80 to-transparent" />
@@ -165,7 +175,107 @@ export function DoctorProfile() {
             </div>
           </motion.div>
         </div>
+
+        {/* Awards & Achievements */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: '-60px' }}
+          transition={{ duration: 0.6 }}
+          className="mt-20"
+        >
+          <h3 className="mb-8 text-center font-heading text-2xl font-bold text-foreground">
+            Awards & <span className="gradient-text">Achievements</span>
+          </h3>
+          <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-7">
+            {awards.map((award, i) => (
+              <motion.button
+                key={i}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.4, delay: i * 0.07 }}
+                whileHover={{ y: -6, scale: 1.03 }}
+                onClick={() => setLightbox(i)}
+                className="group relative overflow-hidden rounded-2xl border border-border bg-card shadow-sm transition-shadow hover:border-primary/40 hover:shadow-xl hover:shadow-primary/10 cursor-pointer"
+              >
+                <div className="relative aspect-square">
+                  <Image
+                    src={award.src}
+                    alt={award.alt}
+                    fill
+                    className="object-cover transition-transform duration-500 group-hover:scale-110"
+                  />
+                  {/* Overlay on hover */}
+                  <div className="absolute inset-0 flex items-center justify-center bg-primary/0 transition-all duration-300 group-hover:bg-primary/20">
+                    <ZoomIn className="h-7 w-7 text-white opacity-0 drop-shadow-lg transition-opacity duration-300 group-hover:opacity-100" />
+                  </div>
+                </div>
+                {/* Shine effect */}
+                <div className="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/20 to-transparent transition-transform duration-700 group-hover:translate-x-full" />
+              </motion.button>
+            ))}
+          </div>
+        </motion.div>
       </div>
+
+      {/* Lightbox */}
+      <AnimatePresence>
+        {lightbox !== null && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-50 flex items-center justify-center bg-black/90 p-4 backdrop-blur-sm"
+            onClick={() => setLightbox(null)}
+          >
+            <motion.div
+              initial={{ scale: 0.85, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.85, opacity: 0 }}
+              transition={{ duration: 0.25 }}
+              className="relative max-h-[90vh] max-w-3xl w-full"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <div className="relative aspect-square w-full overflow-hidden rounded-2xl">
+                <Image
+                  src={lightbox === -1 ? siteConfig.doctor.image : awards[lightbox].src}
+                  alt={lightbox === -1 ? siteConfig.doctor.name : awards[lightbox].alt}
+                  fill
+                  className="object-contain"
+                />
+              </div>
+              {/* Close */}
+              <button
+                onClick={() => setLightbox(null)}
+                className="absolute -right-3 -top-3 flex h-9 w-9 items-center justify-center rounded-full bg-white text-foreground shadow-lg transition-transform hover:scale-110"
+              >
+                <X size={16} />
+              </button>
+              {lightbox !== -1 && (
+                <>
+                  {/* Prev */}
+                  <button
+                    onClick={() => setLightbox((lightbox - 1 + awards.length) % awards.length)}
+                    className="absolute left-3 top-1/2 -translate-y-1/2 flex h-10 w-10 items-center justify-center rounded-full bg-white/90 text-foreground shadow-lg transition-transform hover:scale-110"
+                  >
+                    <ChevronLeft size={20} />
+                  </button>
+                  {/* Next */}
+                  <button
+                    onClick={() => setLightbox((lightbox + 1) % awards.length)}
+                    className="absolute right-3 top-1/2 -translate-y-1/2 flex h-10 w-10 items-center justify-center rounded-full bg-white/90 text-foreground shadow-lg transition-transform hover:scale-110"
+                  >
+                    <ChevronRight size={20} />
+                  </button>
+                  {/* Counter */}
+                  <p className="mt-3 text-center text-sm text-white/60">{lightbox + 1} / {awards.length}</p>
+                </>
+              )}
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </section>
   );
 }
