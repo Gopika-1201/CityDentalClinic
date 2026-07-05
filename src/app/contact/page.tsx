@@ -76,7 +76,7 @@ export default function ContactPage() {
               ))}
 
               {/* Social */}
-              <div className="flex gap-3">
+              <div className="flex flex-col sm:flex-row flex-wrap gap-3">
                 <a
                   href={siteConfig.social.instagram}
                   target="_blank"
@@ -106,7 +106,7 @@ export default function ContactPage() {
                 <iframe
                   src={siteConfig.social.googleMapsEmbed}
                   width="100%"
-                  height="220"
+                  className="h-[180px] sm:h-[220px] md:h-[260px]"
                   style={{ border: 0 }}
                   allowFullScreen
                   loading="lazy"

@@ -72,7 +72,7 @@ const testimonials = [
 
 function TestimonialCard({ t }: { t: (typeof testimonials)[number] }) {
   return (
-    <div className="w-[300px] shrink-0 rounded-2xl border border-border bg-card p-6 shadow-sm">
+    <div className="w-full max-w-[280px] sm:max-w-[300px] shrink-0 rounded-2xl border border-border bg-card p-6 shadow-sm">
       <div className="mb-4 flex items-start justify-between">
         <div className="flex gap-0.5">
           {[...Array(t.rating)].map((_, i) => (
@@ -109,8 +109,8 @@ export function TestimonialsSection() {
 
       {/* Row 1 — scrolls left */}
       <div className="relative">
-        <div className="pointer-events-none absolute inset-y-0 left-0 z-10 w-24 bg-gradient-to-r from-background to-transparent" />
-        <div className="pointer-events-none absolute inset-y-0 right-0 z-10 w-24 bg-gradient-to-l from-background to-transparent" />
+        <div className="pointer-events-none absolute inset-y-0 left-0 z-10 w-16 sm:w-24 bg-gradient-to-r from-background to-transparent" />
+        <div className="pointer-events-none absolute inset-y-0 right-0 z-10 w-16 sm:w-24 bg-gradient-to-l from-background to-transparent" />
         <div className="marquee-track pb-5">
           {[...testimonials, ...testimonials].map((t, i) => (
             <TestimonialCard key={i} t={t} />
@@ -120,8 +120,8 @@ export function TestimonialsSection() {
 
       {/* Row 2 — scrolls right */}
       <div className="relative mt-2">
-        <div className="pointer-events-none absolute inset-y-0 left-0 z-10 w-24 bg-gradient-to-r from-background to-transparent" />
-        <div className="pointer-events-none absolute inset-y-0 right-0 z-10 w-24 bg-gradient-to-l from-background to-transparent" />
+        <div className="pointer-events-none absolute inset-y-0 left-0 z-10 w-16 sm:w-24 bg-gradient-to-r from-background to-transparent" />
+        <div className="pointer-events-none absolute inset-y-0 right-0 z-10 w-16 sm:w-24 bg-gradient-to-l from-background to-transparent" />
         <div className="marquee-track-reverse pb-5">
           {[...testimonials, ...testimonials].reverse().map((t, i) => (
             <TestimonialCard key={i} t={t} />

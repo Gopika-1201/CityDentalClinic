@@ -32,7 +32,7 @@ export function DoctorSection() {
             transition={{ duration: 0.7, ease: [0.25, 0.46, 0.45, 0.94] }}
             className="relative flex items-center justify-center"
           >
-            <div className="relative h-[420px] w-[420px]">
+            <div className="relative mx-auto h-[280px] w-[280px] sm:h-[330px] sm:w-[330px] lg:h-[420px] lg:w-[420px]">
 
               {/* Outermost ring — CSS spin */}
               <div className="ring-spin-slow absolute inset-0">

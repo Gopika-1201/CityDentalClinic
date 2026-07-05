@@ -123,11 +123,11 @@ export function HeroSection() {
             Crafting Your
             <br />
             Perfect{' '}
-            <span
-              ref={wordRef}
-              className="gradient-text inline-block min-w-[220px]"
-              style={{ transition: 'opacity 0.4s ease, transform 0.4s ease' }}
-            >
+             <span
+               ref={wordRef}
+               className="gradient-text inline-block min-w-[100px] sm:min-w-[160px] lg:min-w-[220px]"
+               style={{ transition: 'opacity 0.4s ease, transform 0.4s ease' }}
+             >
               Smile
             </span>
           </motion.h1>
@@ -191,7 +191,7 @@ export function HeroSection() {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 1.4 }}
-        className="absolute bottom-8 left-1/2 z-10 -translate-x-1/2"
+        className="absolute bottom-6 sm:bottom-8 left-1/2 z-10 -translate-x-1/2"
       >
         <div className="scroll-bounce flex flex-col items-center gap-1 text-foreground/30">
           <span className="text-[10px] tracking-[0.2em] uppercase">Scroll</span>

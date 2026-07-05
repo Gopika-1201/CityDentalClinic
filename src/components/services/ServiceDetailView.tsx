@@ -58,9 +58,9 @@ export function ServiceDetailView({ service }: { service: ServiceDetail }) {
       {/* Main content */}
       <section className="section-padding">
         <div className="container-tight">
-          <div className="grid gap-12 lg:grid-cols-3">
-            {/* Left — Main */}
-            <div className="lg:col-span-2 flex flex-col gap-10">
+           <div className="grid gap-12 lg:grid-cols-3">
+             {/* Left — Main */}
+             <div className="lg:col-span-2 flex flex-col gap-10 order-1 lg:order-none">
               {/* Image */}
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
@@ -72,7 +72,7 @@ export function ServiceDetailView({ service }: { service: ServiceDetail }) {
                   src={service.image}
                   alt={service.title}
                   fill
-                  className={`object-cover ${service.slug === 'pediatric-dentistry' ? 'object-bottom' : 'object-center'}`}
+                  className={`object-cover ${service.slug === 'pediatric-dentistry' ? 'object-top' : 'object-center'}`}
                   onError={(e) => {
                     (e.target as HTMLImageElement).style.display = 'none';
                   }}
@@ -120,10 +120,10 @@ export function ServiceDetailView({ service }: { service: ServiceDetail }) {
                   ))}
                 </div>
               </motion.div>
-            </div>
+             </div>
 
-            {/* Right — Sidebar */}
-            <div className="flex flex-col gap-5">
+             {/* Right — Sidebar */}
+             <div className="flex flex-col gap-5 order-2 lg:order-none">
               {/* Quick info */}
               <motion.div
                 initial={{ opacity: 0, x: 20 }}

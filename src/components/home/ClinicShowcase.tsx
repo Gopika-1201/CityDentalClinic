@@ -62,7 +62,7 @@ export function ClinicShowcase() {
 
       {/* 3D stage — full viewport width */}
       <div className="relative" style={{ perspective: '1800px', perspectiveOrigin: '50% 50%' }}>
-        <div className="relative mx-auto" style={{ height: 520 }}>
+        <div className="relative mx-auto w-full" style={{ height: 'auto', minHeight: '280px' }}>
           {mounted && clinicImages.map((img, i) => {
             const offset = (i - active + TOTAL) % TOTAL;
             const { tx, tz, ry, scale, opacity, zIndex } = getTransform(offset, TOTAL);
@@ -77,8 +77,8 @@ export function ClinicShowcase() {
                   position: 'absolute',
                   top: '50%',
                   left: '50%',
-                  width: '480px',
-                  height: '480px',
+                  width: 'min(480px, 85vw)',
+                  height: 'min(420px, 75vw)',
                   transform: `translate(-50%, -50%) translateX(${tx}px) translateZ(${tz}px) rotateY(${ry}deg) scale(${scale})`,
                   opacity,
                   zIndex,

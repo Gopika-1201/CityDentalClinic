@@ -29,15 +29,13 @@ export function Navbar() {
           : 'bg-transparent'
       )}
     >
-      <nav className="container-tight flex h-16 items-center justify-between lg:h-18">
+      <nav className="container-tight flex h-16 items-center justify-between lg:h-20">
         {/* Logo */}
         <Link href="/" className="flex flex-col leading-tight">
           <span className="font-heading text-lg font-bold text-primary">
             {siteConfig.name}
           </span>
-          <span className="text-[10px] tracking-widest text-muted-foreground uppercase">
-            {siteConfig.doctor.name} · {siteConfig.doctor.qualification}
-          </span>
+          
         </Link>
 
         {/* Desktop Nav */}

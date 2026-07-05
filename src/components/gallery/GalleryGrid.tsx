@@ -56,7 +56,7 @@ function Lightbox({
         animate={{ opacity: 1, scale: 1 }}
         exit={{ opacity: 0, scale: 0.92 }}
         transition={{ duration: 0.25 }}
-        className="relative mx-16 max-h-[85vh] max-w-4xl w-full aspect-video overflow-hidden rounded-2xl"
+        className="relative mx-4 sm:mx-16 max-h-[85vh] max-w-4xl w-full aspect-video overflow-hidden rounded-2xl"
         onClick={(e) => e.stopPropagation()}
       >
         <div className="relative h-full w-full bg-white/5">

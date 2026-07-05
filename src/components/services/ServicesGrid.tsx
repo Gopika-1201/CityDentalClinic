@@ -60,7 +60,7 @@ function ServiceCard({
               src={service.image}
               alt={service.title}
               fill
-              className={`object-cover transition-transform duration-500 group-hover:scale-105 ${service.slug === 'pediatric-dentistry' ? 'object-bottom' : 'object-center'}`}
+              className={`object-cover transition-transform duration-500 group-hover:scale-105 ${service.slug === 'pediatric-dentistry' ? 'object-top' : 'object-center'}`}
               onError={(e) => {
                 (e.target as HTMLImageElement).style.display = 'none';
               }}

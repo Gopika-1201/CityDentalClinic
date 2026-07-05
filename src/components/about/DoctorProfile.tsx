@@ -187,7 +187,7 @@ export function DoctorProfile() {
           <h3 className="mb-8 text-center font-heading text-2xl font-bold text-foreground">
             Awards & <span className="gradient-text">Achievements</span>
           </h3>
-          <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-7">
+          <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6">
             {awards.map((award, i) => (
               <motion.button
                 key={i}
