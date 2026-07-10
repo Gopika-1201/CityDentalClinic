@@ -1,0 +1,15 @@
+node_modules/
+.env
+*.log
+frontend/.next/
+frontend/out/
+backend/dist/
+
+frontend/node_modules/
+backend/node_modules/
+
+frontend/dist/
+backend/dist/
+
+frontend/.env
+backend/.env
