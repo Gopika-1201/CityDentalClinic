@@ -1,36 +1,125 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# City Dental Care
 
-## Getting Started
+Premium dental care in Tiruppur, led by Dr. Chandrasekar with 19 years of experience. Certified Invisalign & Implant provider.
 
-First, run the development server:
+**Live Demo:** https://city-dental-clinic-md9y.vercel.app/
+
+## Tech Stack
+
+**Frontend**
+- Next.js 15 (App Router)
+- React 19
+- Tailwind CSS 4
+- shadcn/ui
+- Framer Motion
+- TypeScript
+
+**Backend**
+- Node.js + Express
+- TypeScript
+- MongoDB + Mongoose
+- JWT Authentication
+- Resend (Email)
+- Helmet, CORS, Rate Limiting
+
+## Local Development
+
+### Prerequisites
+- Node.js >= 18
+- MongoDB (local or Atlas)
+- npm
+
+### Setup
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+# Clone the repo
+git clone https://github.com/Gopika-1201/CityDentalClinic.git
+cd CityDentalClinic
+
+# Install frontend dependencies
+cd frontend
+npm install
+cd ..
+
+# Install backend dependencies
+cd backend
+npm install
+cd ..
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### Environment Variables
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Create `backend/.env`:
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```env
+PORT=5000
+NODE_ENV=development
+MONGODB_URI=mongodb+srv://<username>:<password>@cluster0.ssvipvc.mongodb.net/?appName=Cluster0
+JWT_SECRET=<your-jwt-secret-key-here>
+JWT_EXPIRES_IN=7d
+RESEND_API_KEY=re_<your-resend-api-key>
+EMAIL_FROM=noreply@citydentalcare.in
+ADMIN_EMAIL=admin@citydentalcare.in
+FRONTEND_URL=http://localhost:3000
+```
 
-## Learn More
+Create `frontend/.env.local`:
 
-To learn more about Next.js, take a look at the following resources:
+```env
+NEXT_PUBLIC_API_URL=http://localhost:5000
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### Run Development Servers
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+```bash
+# Terminal 1 - Backend
+cd backend
+npm run dev
 
-## Deploy on Vercel
+# Terminal 2 - Frontend
+cd frontend
+npm run dev
+```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Frontend: http://localhost:3000
+Backend: http://localhost:5000
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Deployment
+
+- **Frontend** deployed on [Vercel](https://vercel.com/)
+- **Backend** deployed on [Render](https://render.com/)
+
+### Vercel (Frontend)
+- Root Directory: `frontend`
+- Build Command: `cd frontend && npm install && npm run build`
+- Output: `.next`
+- Framework: Next.js
+
+### Render (Backend)
+- Root Directory: `backend`
+- Build Command: `npm install && npm run build`
+- Start Command: `npm run start`
+- Env: `NPM_CONFIG_PRODUCTION=false` (required for TypeScript types)
+
+## Project Structure
+
+```
+├── frontend/           # Next.js app (App Router)
+│   ├── src/
+│   │   ├── app/        # Pages and layouts
+│   │   ├── components/ # Reusable UI components
+│   │   ├── config/     # Site configuration
+│   │   └── lib/        # Utilities
+│   └── public/         # Static assets
+│
+└── backend/            # Express API
+    └── src/
+        ├── routes/     # API routes
+        ├── models/     # Mongoose models
+        ├── middleware/ # Auth, errors, validation
+        └── utils/      # Helpers and config
+```
+
+## License
+
+Private - All rights reserved.
