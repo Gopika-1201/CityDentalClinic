@@ -119,11 +119,11 @@ export default function FAQPage() {
                   align="left"
                   className="mb-6"
                 />
-                <Accordion className="flex flex-col gap-3">
-                  {section.items.map((item, i) => (
-                    <AccordionItem
-                      key={i}
-                      value={i}
+                 <Accordion className="flex flex-col gap-3">
+                   {section.items.map((item, i) => (
+                     <AccordionItem
+                       key={`${section.category}-${i}`}
+                       value={`item-${i}`}
                       className="rounded-2xl border border-border bg-card px-6 shadow-sm"
                     >
                       <AccordionTrigger className="py-5 text-left text-sm font-semibold text-foreground hover:no-underline">
